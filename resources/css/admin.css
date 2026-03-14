@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Custom base styles — Admin side
+   ============================================================ */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply font-sans text-gray-800 bg-gray-100 antialiased;
+    }
+}
+
+/* ============================================================
+   Custom components — Admin side
+   ============================================================ */
+@layer components {
+
+    /* Tombol */
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-white hover:bg-gray-50 text-gray-700 text-sm font-semibold rounded-lg border border-gray-200 transition-colors duration-200;
+    }
+
+    .btn-success {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold rounded-lg transition-colors duration-200;
+    }
+
+    .btn-danger {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold rounded-lg transition-colors duration-200;
+    }
+
+    .btn-warning {
+        @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold rounded-lg transition-colors duration-200;
+    }
+
+    /* Card admin */
+    .admin-card {
+        @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6;
+    }
+
+    /* Stats card */
+    .stat-card {
+        @apply bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex items-center gap-4;
+    }
+
+    /* Form */
+    .form-input {
+        @apply w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500 text-sm;
+    }
+
+    .form-label {
+        @apply block text-sm font-medium text-gray-700 mb-1.5;
+    }
+
+    .form-error {
+        @apply text-red-500 text-xs mt-1;
+    }
+
+    /* Table */
+    .admin-table {
+        @apply w-full text-sm text-left text-gray-700;
+    }
+
+    .admin-table thead {
+        @apply bg-gray-50 text-xs uppercase tracking-wider text-gray-500 border-b border-gray-200;
+    }
+
+    .admin-table th {
+        @apply px-4 py-3 font-medium;
+    }
+
+    .admin-table td {
+        @apply px-4 py-3 border-b border-gray-100;
+    }
+
+    .admin-table tbody tr:hover {
+        @apply bg-gray-50;
+    }
+
+    /* Sidebar nav item */
+    .nav-item {
+        @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-300 hover:bg-slate-700 hover:text-white transition-colors duration-150;
+    }
+
+    .nav-item.active {
+        @apply bg-slate-700 text-white;
+    }
+
+    /* Badge status order */
+    .badge-pending {
+        @apply bg-yellow-100 text-yellow-800;
+    }
+
+    .badge-confirmed {
+        @apply bg-blue-100 text-blue-800;
+    }
+
+    .badge-in_progress {
+        @apply bg-orange-100 text-orange-800;
+    }
+
+    .badge-ready {
+        @apply bg-green-100 text-green-800;
+    }
+
+    .badge-completed {
+        @apply bg-gray-100 text-gray-700;
+    }
+
+    .badge-cancelled {
+        @apply bg-red-100 text-red-800;
+    }
+
+    /* Badge payment status */
+    .badge-payment-pending {
+        @apply bg-yellow-100 text-yellow-800;
+    }
+
+    .badge-payment-uploaded {
+        @apply bg-blue-100 text-blue-800;
+    }
+
+    .badge-payment-verified {
+        @apply bg-green-100 text-green-800;
+    }
+
+    .badge-payment-rejected {
+        @apply bg-red-100 text-red-800;
+    }
+
+    .badge-payment-refunded {
+        @apply bg-purple-100 text-purple-800;
+    }
+}
