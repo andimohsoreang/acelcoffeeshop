@@ -35,7 +35,7 @@
 
         {{-- Call to Action Buttons --}}
         <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-            <a href="{{ route('menu.index') }}" class="inline-flex justify-center items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-bold py-3.5 md:py-4 px-6 md:px-8 rounded-xl md:rounded-2xl text-sm md:text-base shadow-lg shadow-amber-600/30 transition-all active:scale-[0.98]">
+            <a href="{{ route('menu.index') }}" class="inline-flex justify-center items-center gap-2 bg-brand-primary hover:bg-brand-dark text-white font-bold py-3.5 md:py-4 px-6 md:px-8 rounded-xl md:rounded-2xl text-sm md:text-base shadow-lg shadow-brand-primary/20 transition-all active:scale-[0.98]">
                 <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
                 Kembali ke Menu
             </a>

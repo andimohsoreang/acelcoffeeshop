@@ -18,7 +18,7 @@
                 <input type="text" name="search" id="search-input" value="{{ request('search') }}"
                        aria-label="Cari menu favorit kamu"
                        placeholder="Cari menu favorit kamu..."
-                       class="w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent transition-all">
+                       class="w-full pl-10 pr-10 py-2.5 bg-brand-secondary/50 border border-brand-primary/10 rounded-2xl text-sm text-brand-dark placeholder-brand-muted focus:outline-none focus:ring-2 focus:ring-brand-primary/30 transition-all">
                 @if(request('search'))
                 <a href="{{ route('menu.index', array_filter(['category' => request('category')])) }}"
                    aria-label="Hapus kata kunci pencarian"
@@ -34,14 +34,14 @@
             <a href="{{ route('menu.index', array_filter(['search' => request('search')])) }}"
                aria-label="Urutkan Semua Kategori"
                class="flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap
-                      {{ $selectedCategory === 'semua' ? 'bg-amber-600 text-white shadow-md shadow-amber-200' : 'bg-slate-100 text-slate-600 hover:bg-slate-200' }}">
+                      {{ $selectedCategory === 'semua' ? 'bg-brand-primary text-white shadow-md shadow-brand-primary/20' : 'bg-slate-100 text-slate-600 hover:bg-slate-200' }}">
                 🍽️ Semua
             </a>
             @foreach($categories as $cat)
             <a href="{{ route('menu.index', array_filter(['category' => $cat->slug, 'search' => request('search')])) }}"
                aria-label="Kategori {{ $cat->name }}"
                class="flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-bold transition-all whitespace-nowrap
-                      {{ $selectedCategory === $cat->slug ? 'bg-amber-600 text-white shadow-md shadow-amber-200' : 'bg-slate-100 text-slate-600 hover:bg-slate-200' }}">
+                      {{ $selectedCategory === $cat->slug ? 'bg-brand-primary text-white shadow-md shadow-brand-primary/20' : 'bg-slate-100 text-slate-600 hover:bg-slate-200' }}">
                 @if($cat->icon)<span aria-hidden="true">{{ $cat->icon }}</span>@endif {{ $cat->name }}
             </a>
             @endforeach
@@ -55,9 +55,9 @@
      ══════════════════════════════════════════════════════ --}}
 <div class="w-full max-w-5xl lg:max-w-7xl md:mx-auto px-4 md:px-6 lg:px-10 pt-4 pb-3 flex items-end justify-between">
     <div>
-        <h2 class="text-base md:text-xl font-extrabold text-slate-800 leading-tight">
+        <h2 class="text-base md:text-xl font-extrabold text-brand-dark leading-tight">
             @if(request('search'))
-                Hasil "<span class="text-amber-600">{{ request('search') }}</span>"
+                Hasil "<span class="text-brand-primary">{{ request('search') }}</span>"
             @elseif($selectedCategory !== 'semua')
                 @php $activeCat = $categories->firstWhere('slug', $selectedCategory); @endphp
                 {{ $activeCat?->icon }} {{ $activeCat?->name ?? 'Kategori' }}
@@ -97,14 +97,14 @@
                             <span class="px-1.5 py-0.5 text-[9px] font-bold uppercase bg-red-500 text-white rounded-md shadow">NEW</span>
                         @endif
                         @if($product->is_featured)
-                            <span class="px-1.5 py-0.5 text-[9px] font-bold uppercase bg-amber-500 text-white rounded-md shadow">⭐</span>
+                            <span class="px-1.5 py-0.5 text-[9px] font-bold uppercase bg-brand-primary text-brand-secondary rounded-md shadow">⭐</span>
                         @endif
                     </div>
 
                     {{-- Rating Chip --}}
                     @if($product->rating_count > 0)
                     <div class="absolute top-2 right-2 flex items-center gap-0.5 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full" aria-label="Rating {{ number_format($product->rating_avg, 1) }} dari 5">
-                        <svg class="w-2.5 h-2.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-2.5 h-2.5 text-brand-secondary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                         {{ number_format($product->rating_avg, 1) }}
                     </div>
                     @endif
@@ -114,18 +114,18 @@
                      <div class="p-2.5 flex flex-col flex-1">
                     <p class="text-[9px] text-slate-400 font-medium truncate mb-0.5">{{ $product->category->name ?? '—' }}</p>
                     <a href="{{ route('menu.show', $product->slug) }}">
-                        <h3 class="text-[11px] md:text-xs font-bold text-slate-800 line-clamp-2 leading-snug mb-1.5 flex-1">{{ $product->name }}</h3>
+                        <h3 class="text-[11px] md:text-xs font-bold text-brand-dark line-clamp-2 leading-snug mb-1.5 flex-1">{{ $product->name }}</h3>
                     </a>
 
                     {{-- Price + Quick Add Button (all sizes) --}}
                     <div class="flex items-center justify-between gap-1 mt-auto">
-                        <p class="text-xs font-extrabold text-amber-600 leading-none">{{ $product->formatted_price }}</p>
+                        <p class="text-xs font-extrabold text-brand-primary leading-none">{{ $product->formatted_price }}</p>
 
                         @if($product->is_available && $product->stock > 0)
                         {{-- Mobile: opens bottom sheet --}}
                         <button type="button" aria-label="Tambah {{ $product->name }} ke keranjang"
                                 onclick="openQuickAdd({{ $product->id }}, '{{ addslashes($product->name) }}', '{{ $product->formatted_price }}', {{ $product->stock }}, '{{ $product->image ? asset('storage/'.$product->image) : '' }}', {{ $product->price }})"
-                                class="md:hidden w-8 h-8 bg-amber-600 hover:bg-amber-700 text-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg active:scale-90 transition-all flex-shrink-0">
+                                class="md:hidden w-8 h-8 bg-brand-primary hover:bg-brand-dark text-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg active:scale-90 transition-all flex-shrink-0">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
                         </button>
                         @else
@@ -143,7 +143,7 @@
                         <input type="hidden" name="quantity" value="1">
                         <button type="submit"
                                 aria-label="Tambah {{ $product->name }} ke Keranjang"
-                                class="w-full flex items-center justify-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-xl py-2 shadow-sm hover:shadow-md active:scale-[0.97] transition-all">
+                                class="w-full flex items-center justify-center gap-1.5 bg-brand-primary hover:bg-brand-dark text-white text-xs font-bold rounded-xl py-2 shadow-sm hover:shadow-md active:scale-[0.97] transition-all">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                             Tambah ke Keranjang
                         </button>
@@ -166,21 +166,21 @@
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 </span>
             @else
-                <a href="{{ $products->previousPageUrl() }}" aria-label="Halaman sebelumnya" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-amber-50 hover:border-amber-200 hover:text-amber-600 transition-colors shadow-sm">
+                <a href="{{ $products->previousPageUrl() }}" aria-label="Halaman sebelumnya" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-brand-primary/10 text-brand-muted hover:bg-brand-secondary hover:border-brand-primary/30 hover:text-brand-primary transition-colors shadow-sm">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 </a>
             @endif
 
             @foreach($products->getUrlRange(max(1, $products->currentPage() - 2), min($products->lastPage(), $products->currentPage() + 2)) as $page => $url)
                 @if($page == $products->currentPage())
-                    <span class="w-9 h-9 flex items-center justify-center rounded-full bg-amber-600 text-white text-sm font-bold shadow-md" aria-current="page">{{ $page }}</span>
+                    <span class="w-9 h-9 flex items-center justify-center rounded-full bg-brand-primary text-white text-sm font-bold shadow-md" aria-current="page">{{ $page }}</span>
                 @else
-                    <a href="{{ $url }}" aria-label="Ke Halaman {{ $page }}" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 text-sm font-semibold hover:bg-amber-50 hover:border-amber-200 hover:text-amber-600 transition-colors">{{ $page }}</a>
+                    <a href="{{ $url }}" aria-label="Ke Halaman {{ $page }}" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-brand-primary/10 text-brand-muted text-sm font-semibold hover:bg-brand-secondary hover:border-brand-primary/30 hover:text-brand-primary transition-colors">{{ $page }}</a>
                 @endif
             @endforeach
 
             @if($products->hasMorePages())
-                <a href="{{ $products->nextPageUrl() }}" aria-label="Halaman selanjutnya" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-amber-50 hover:border-amber-200 hover:text-amber-600 transition-colors shadow-sm">
+                <a href="{{ $products->nextPageUrl() }}" aria-label="Halaman selanjutnya" class="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-brand-primary/10 text-brand-muted hover:bg-brand-secondary hover:border-brand-primary/30 hover:text-brand-primary transition-colors shadow-sm">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             @else
@@ -195,7 +195,7 @@
     @else
         <div class="flex flex-col items-center justify-center py-20 text-center">
             <div class="w-20 h-20 bg-slate-100 rounded-3xl flex items-center justify-center mb-5 text-4xl">☕</div>
-            <h3 class="text-base font-bold text-slate-700 mb-1">Produk tidak ditemukan</h3>
+            <h3 class="text-base font-bold text-brand-dark mb-1">Produk tidak ditemukan</h3>
             <p class="text-sm text-slate-400 mb-6 max-w-xs">
                 @if(request('search'))
                     Tidak ada yang cocok dengan "<strong>{{ request('search') }}</strong>". Coba kata kunci lain.
@@ -203,7 +203,7 @@
                     Belum ada produk di kategori ini.
                 @endif
             </p>
-            <a href="{{ route('menu.index') }}" class="px-5 py-2.5 bg-amber-600 text-white text-sm font-bold rounded-2xl shadow-md hover:bg-amber-700 active:scale-95 transition-all">
+            <a href="{{ route('menu.index') }}" class="px-5 py-2.5 bg-brand-primary text-white text-sm font-bold rounded-2xl shadow-md hover:bg-brand-dark active:scale-95 transition-all">
                 Lihat Semua Menu
             </a>
         </div>
@@ -240,7 +240,7 @@
                 {{-- Name + Price --}}
                 <div class="flex-1 min-w-0">
                     <h4 id="sheet-name" class="text-sm font-bold text-slate-800 truncate leading-tight"></h4>
-                    <p id="sheet-price" class="text-xs font-bold text-amber-600"></p>
+                    <p id="sheet-price" class="text-xs font-bold text-brand-primary"></p>
                 </div>
 
                 {{-- Stepper --}}
@@ -258,7 +258,7 @@
 
                 {{-- Submit --}}
                 <button type="submit"
-                        class="flex-shrink-0 flex items-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl px-4 py-2.5 shadow-md active:scale-95 transition-all">
+                        class="flex-shrink-0 flex items-center gap-1.5 bg-brand-primary hover:bg-brand-dark text-white font-bold text-xs rounded-xl px-4 py-2.5 shadow-md active:scale-95 transition-all">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
                     Tambah
                 </button>

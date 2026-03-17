@@ -30,21 +30,21 @@
                     
                     {{-- 1. Tipe Pemesanan --}}
                     <section class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm border border-slate-100 relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-1.5 h-full bg-amber-500"></div>
-                        <h2 class="text-sm md:text-base font-bold text-slate-800 mb-3 md:mb-4 flex items-center gap-2">
-                            <span class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-xs md:text-sm border border-amber-100/50">1</span>
+                        <div class="absolute top-0 left-0 w-1.5 h-full bg-brand-primary"></div>
+                        <h2 class="text-sm md:text-base font-bold text-brand-dark mb-3 md:mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-brand-secondary text-brand-primary flex items-center justify-center text-xs md:text-sm border border-brand-primary/10">1</span>
                             Tipe Pemesanan
                         </h2>
                         
                         <div class="space-y-3">
                             {{-- Takeaway --}}
                             <label class="relative flex items-center p-3 md:p-4 gap-3 md:gap-4 cursor-pointer rounded-xl md:rounded-2xl border-2 transition-colors group"
-                                   :class="orderType === 'takeaway' ? 'border-amber-500 bg-amber-50/50' : 'border-slate-100 hover:bg-slate-50'">
+                                   :class="orderType === 'takeaway' ? 'border-brand-primary bg-brand-secondary' : 'border-slate-100 hover:bg-slate-50'">
                                 <div class="flex items-center shrink-0 pl-1 md:pl-2">
-                                    <input name="order_type" type="radio" value="takeaway" x-model="orderType" class="w-5 h-5 text-amber-600 bg-slate-100 border-slate-300 focus:ring-amber-500">
+                                    <input name="order_type" type="radio" value="takeaway" x-model="orderType" class="w-5 h-5 text-brand-primary bg-slate-100 border-slate-300 focus:ring-brand-primary">
                                 </div>
                                 <div class="flex-1 flex items-center gap-3 md:gap-4">
-                                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0 shadow-sm border border-amber-200">
+                                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-brand-secondary text-brand-primary flex items-center justify-center shrink-0 shadow-sm border border-brand-primary/10">
                                         <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                                     </div>
                                     <div>
@@ -55,12 +55,12 @@
 
                             {{-- Dine In --}}
                             <label class="relative flex items-center p-3 md:p-4 gap-3 md:gap-4 cursor-pointer rounded-xl md:rounded-2xl border-2 transition-colors group"
-                                   :class="orderType === 'dine_in' ? 'border-amber-500 bg-amber-50/50' : 'border-slate-100 hover:bg-slate-50'">
+                                   :class="orderType === 'dine_in' ? 'border-brand-primary bg-brand-secondary' : 'border-slate-100 hover:bg-slate-50'">
                                 <div class="flex items-center shrink-0 pl-1 md:pl-2">
-                                    <input name="order_type" type="radio" value="dine_in" x-model="orderType" class="w-5 h-5 text-amber-600 bg-slate-100 border-slate-300 focus:ring-amber-500">
+                                    <input name="order_type" type="radio" value="dine_in" x-model="orderType" class="w-5 h-5 text-brand-primary bg-slate-100 border-slate-300 focus:ring-brand-primary">
                                 </div>
                                 <div class="flex-1 flex items-center gap-3 md:gap-4">
-                                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center shrink-0 shadow-sm border border-orange-200">
+                                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-brand-secondary text-brand-primary flex items-center justify-center shrink-0 shadow-sm border border-brand-primary/10">
                                         <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                                     </div>
                                     <div>
@@ -71,31 +71,21 @@
                         </div>
                         @error('order_type') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
 
-                        {{-- Input Nomor Meja (muncul jika Dine In) --}}
-                        <div x-show="orderType === 'dine_in'" x-cloak>
-                            <div class="mt-3 p-3 md:p-4 bg-slate-50 rounded-xl border border-slate-100">
-                                <label for="table_number" class="block text-[11px] md:text-xs font-bold text-slate-600 mb-1.5">Nomor Meja <span class="text-red-500">*</span></label>
-                                <input type="text" id="table_number" name="table_number" value="{{ old('table_number') }}"
-                                       class="w-full bg-white border border-slate-200 text-slate-800 text-xs md:text-sm rounded-[10px] focus:ring-amber-500 focus:border-amber-500 block p-2.5 transition-colors"
-                                       placeholder="Contoh: Meja 12">
-                                @error('table_number') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
-                            </div>
-                        </div>
                     </section>
 
                     {{-- 2. Data Pelanggan --}}
                     <section class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm border border-slate-100 relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-1.5 h-full bg-amber-500"></div>
-                        <h2 class="text-sm md:text-base font-bold text-slate-800 mb-3 md:mb-4 flex items-center gap-2">
-                            <span class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-xs md:text-sm border border-amber-100/50">2</span>
+                        <div class="absolute top-0 left-0 w-1.5 h-full bg-brand-primary"></div>
+                        <h2 class="text-sm md:text-base font-bold text-brand-dark mb-3 md:mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-brand-secondary text-brand-primary flex items-center justify-center text-xs md:text-sm border border-brand-primary/10">2</span>
                             Data Pemesan
                         </h2>
 
                         <div class="space-y-3 md:space-y-4">
                             <div>
                                 <label for="customer_name" class="block text-[11px] md:text-xs font-bold text-slate-600 mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
-                                <input type="text" id="customer_name" name="customer_name" value="{{ old('customer_name') }}" required
-                                       class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs md:text-sm rounded-[10px] focus:ring-amber-500 focus:border-amber-500 block p-2.5 transition-colors"
+                                <input type="text" id="customer_name" name="customer_name" value="{{ old('customer_name', auth()->user() ? auth()->user()->name : '') }}" required
+                                       class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs md:text-sm rounded-[10px] focus:ring-brand-primary focus:border-brand-primary block p-2.5 transition-colors"
                                        placeholder="Tulis namamu disini">
                                 @error('customer_name') <span class="text-xs text-red-500 mt-1 block">{{ $message }}</span> @enderror
                             </div>
@@ -107,7 +97,7 @@
                                         <span class="text-slate-400 text-[11px] md:text-xs font-semibold">+62</span>
                                     </div>
                                     <input type="tel" id="customer_phone" name="customer_phone" value="{{ old('customer_phone') }}" required
-                                           class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs md:text-sm rounded-[10px] focus:ring-amber-500 focus:border-amber-500 block p-2.5 pl-10 transition-colors"
+                                           class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs md:text-sm rounded-[10px] focus:ring-brand-primary focus:border-brand-primary block p-2.5 pl-10 transition-colors"
                                            placeholder="81234567890">
                                 </div>
                                 @error('customer_phone') <span class="text-[10px] text-red-500 mt-1 block">{{ $message }}</span> @enderror
@@ -117,7 +107,7 @@
                             <div>
                                 <label for="notes" class="block text-[11px] md:text-xs font-bold text-slate-600 mb-1">Catatan Pesanan (Opsional)</label>
                                 <textarea id="notes" name="notes" rows="2"
-                                          class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs md:text-sm rounded-[10px] focus:ring-amber-500 focus:border-amber-500 block p-2.5 transition-colors"
+                                          class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs md:text-sm rounded-[10px] focus:ring-brand-primary focus:border-brand-primary block p-2.5 transition-colors"
                                           placeholder="Contoh: Es dipisah, dll">{{ old('notes') }}</textarea>
                                 @error('notes') <span class="text-[10px] text-red-500 mt-1 block">{{ $message }}</span> @enderror
                             </div>
@@ -126,18 +116,18 @@
 
                     {{-- 3. Metode Pembayaran --}}
                     <section class="bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-sm border border-slate-100 relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-1.5 h-full bg-amber-500"></div>
-                        <h2 class="text-sm md:text-base font-bold text-slate-800 mb-3 md:mb-4 flex items-center gap-2">
-                            <span class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center text-xs md:text-sm border border-amber-100/50">3</span>
+                        <div class="absolute top-0 left-0 w-1.5 h-full bg-brand-primary"></div>
+                        <h2 class="text-sm md:text-base font-bold text-brand-dark mb-3 md:mb-4 flex items-center gap-2">
+                            <span class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-brand-secondary text-brand-primary flex items-center justify-center text-xs md:text-sm border border-brand-primary/10">3</span>
                             Metode Pembayaran
                         </h2>
 
                         <div class="space-y-3">
                             {{-- Cash --}}
                             <label class="relative flex items-center p-3 md:p-4 gap-3 md:gap-4 cursor-pointer rounded-xl md:rounded-2xl border-2 transition-colors group"
-                                   :class="paymentMethod === 'cash' ? 'border-amber-500 bg-amber-50/50' : 'border-slate-100 hover:bg-slate-50'">
+                                   :class="paymentMethod === 'cash' ? 'border-brand-primary bg-brand-secondary' : 'border-slate-100 hover:bg-slate-50'">
                                 <div class="flex items-center shrink-0 pl-1 md:pl-2">
-                                    <input name="payment_method" type="radio" value="cash" x-model="paymentMethod" class="w-5 h-5 text-amber-600 bg-slate-100 border-slate-300 focus:ring-amber-500">
+                                    <input name="payment_method" type="radio" value="cash" x-model="paymentMethod" class="w-5 h-5 text-brand-primary bg-slate-100 border-slate-300 focus:ring-brand-primary">
                                 </div>
                                 <div class="flex-1 flex items-center gap-3 md:gap-4">
                                     <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-green-100 text-green-600 flex items-center justify-center shrink-0 shadow-sm border border-green-200">
@@ -149,30 +139,13 @@
                                 </div>
                             </label>
 
-                            {{-- Transfer Bank --}}
-                            @if($bankAccounts->count() > 0)
-                            <label class="relative flex items-center p-3 md:p-4 gap-3 md:gap-4 cursor-pointer rounded-xl md:rounded-2xl border-2 transition-colors group"
-                                   :class="paymentMethod === 'transfer' ? 'border-amber-500 bg-amber-50/50' : 'border-slate-100 hover:bg-slate-50'">
-                                <div class="flex items-center shrink-0 pl-1 md:pl-2">
-                                    <input name="payment_method" type="radio" value="transfer" x-model="paymentMethod" class="w-5 h-5 text-amber-600 bg-slate-100 border-slate-300 focus:ring-amber-500">
-                                </div>
-                                <div class="flex-1 flex items-center gap-3 md:gap-4">
-                                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 shadow-sm border border-blue-200">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-                                    </div>
-                                    <div>
-                                        <span class="block text-sm md:text-base font-bold text-slate-800">Transfer Bank</span>
-                                    </div>
-                                </div>
-                            </label>
-                            @endif
-
+                            {{-- QRIS --}}
                             {{-- QRIS --}}
                             @if(isset($hasQris) && $hasQris)
                             <label class="relative flex items-center p-3 md:p-4 gap-3 md:gap-4 cursor-pointer rounded-xl md:rounded-2xl border-2 transition-colors group"
-                                   :class="paymentMethod === 'qris' ? 'border-amber-500 bg-amber-50/50' : 'border-slate-100 hover:bg-slate-50'">
+                                   :class="paymentMethod === 'qris' ? 'border-brand-primary bg-brand-secondary' : 'border-slate-100 hover:bg-slate-50'">
                                 <div class="flex items-center shrink-0 pl-1 md:pl-2">
-                                    <input name="payment_method" type="radio" value="qris" x-model="paymentMethod" class="w-5 h-5 text-amber-600 bg-slate-100 border-slate-300 focus:ring-amber-500">
+                                    <input name="payment_method" type="radio" value="qris" x-model="paymentMethod" class="w-5 h-5 text-brand-primary bg-slate-100 border-slate-300 focus:ring-brand-primary">
                                 </div>
                                 <div class="flex-1 flex items-center gap-3 md:gap-4">
                                     <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center shrink-0 shadow-sm border border-purple-200">
@@ -192,9 +165,9 @@
 
                 {{-- Kanan: Ringkasan Pesanan --}}
                 <div class="lg:col-span-5 relative mt-2 lg:mt-0">
-                    <div class="sticky top-20 bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-xl shadow-amber-900/5 border border-amber-100 overflow-hidden">
+                    <div class="sticky top-20 bg-white rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-xl shadow-brand-dark/5 border border-brand-primary/10 overflow-hidden">
                         {{-- Decorative gradient background --}}
-                        <div class="absolute inset-0 bg-gradient-to-br from-amber-50/50 to-transparent pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-brand-secondary/30 pointer-events-none"></div>
 
                         <div class="relative z-10">
                             <h2 class="text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest mb-3">Ringkasan Pesanan</h2>
@@ -206,7 +179,7 @@
                                         <p class="text-xs md:text-sm font-bold text-slate-800 leading-snug">{{ $item['name'] }}</p>
                                         <p class="text-[10px] md:text-[11px] text-slate-500 mt-0.5">{{ $item['quantity'] }}x @ Rp {{ number_format($item['price'], 0, ',', '.') }}</p>
                                         @if(isset($item['notes']) && $item['notes'])
-                                            <p class="text-[9px] md:text-[10px] text-amber-600 bg-amber-50 px-2 py-0.5 rounded flex-wrap mt-0.5 italic inline-block line-clamp-1">"{{ $item['notes'] }}"</p>
+                                            <p class="text-[9px] md:text-[10px] text-brand-primary bg-brand-secondary px-2 py-0.5 rounded flex-wrap mt-0.5 italic inline-block line-clamp-1">"{{ $item['notes'] }}"</p>
                                         @endif
                                     </div>
                                     <div class="flex-shrink-0 text-right">
@@ -223,15 +196,15 @@
                                 <p class="text-xs md:text-sm font-extrabold text-slate-800">Rp {{ number_format($subtotal, 0, ',', '.') }}</p>
                             </div>
                             <div class="flex justify-between items-center mb-4">
-                                <p class="text-[10px] md:text-[11px] text-amber-600 font-medium">Total Tagihan (Termasuk Pajak)</p>
+                                <p class="text-[10px] md:text-[11px] text-brand-primary font-medium">Total Tagihan (Termasuk Pajak)</p>
                             </div>
 
                             <div class="bg-slate-50 rounded-xl md:rounded-2xl p-3 md:p-4 flex justify-between items-center mb-5">
                                 <span class="text-xs md:text-sm font-bold text-slate-600">Total Bayar:</span>
-                                <span class="text-lg md:text-2xl font-black text-amber-600 tracking-tight">Rp {{ number_format($subtotal, 0, ',', '.') }}</span>
+                                <span class="text-lg md:text-2xl font-black text-brand-primary tracking-tight">Rp {{ number_format($subtotal, 0, ',', '.') }}</span>
                             </div>
 
-                            <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 active:scale-[0.98] text-white py-3 md:py-4 px-4 rounded-xl md:rounded-2xl font-bold text-sm md:text-base shadow-lg shadow-amber-600/30 transition-all flex items-center justify-center gap-2 group">
+                            <button type="submit" class="w-full bg-brand-primary hover:bg-brand-dark active:scale-[0.98] text-white py-3 md:py-4 px-4 rounded-xl md:rounded-2xl font-bold text-sm md:text-base shadow-lg shadow-brand-primary/20 transition-all flex items-center justify-center gap-2 group">
                                 <svg class="w-4 h-4 md:w-5 md:h-5 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                                 Proses Pesanan Sekarang
                             </button>

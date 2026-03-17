@@ -16,7 +16,7 @@
             <button onclick="window.location.reload()" aria-label="Refresh Halaman" title="Refresh manual" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 active:bg-slate-200 transition-colors hover:rotate-180 duration-300">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
             </button>
-            <span class="text-[10px] font-black tracking-wider text-amber-600 bg-amber-50 px-2 py-1 rounded-md uppercase">Antrean {{ $order->queue_number }}</span>
+            <span class="text-[10px] font-black tracking-wider text-brand-primary bg-brand-secondary px-2 py-1 rounded-md uppercase">Antrean {{ $order->queue_number }}</span>
         </div>
     </div>
 
@@ -42,7 +42,7 @@
             <div class="text-right flex flex-col items-end gap-3">
                 <div>
                     <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Nomor Antrean Anda</p>
-                    <div class="text-4xl font-black text-amber-500">{{ $order->queue_number }}</div>
+                    <div class="text-4xl font-black text-brand-primary">{{ $order->queue_number }}</div>
                 </div>
                 {{-- Tombol Refresh Manual Desktop --}}
                 <button onclick="window.location.reload()" class="inline-flex items-center gap-2 text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 border border-slate-200 px-3 py-2 rounded-xl transition-all active:scale-95 group">
@@ -59,7 +59,7 @@
 
                 {{-- Card Info Pemesan Terpadu --}}
                 <div class="bg-white rounded-2xl md:rounded-3xl shadow-sm border border-slate-100 overflow-hidden relative">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-bl-[100px] -z-0"></div>
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-secondary/50 rounded-bl-[100px] -z-0"></div>
                     
                     <div class="p-5 md:p-6 border-b border-dashed border-slate-200 relative z-10 flex justify-between items-center">
                         <div>
@@ -86,10 +86,10 @@
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
                                 Tipe Pesanan
                             </p>
-                            <div class="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 px-2 md:px-2.5 py-1 rounded w-max">
+                            <div class="inline-flex items-center gap-1.5 bg-brand-secondary text-brand-primary px-2 md:px-2.5 py-1 rounded w-max">
                                 @if($order->order_type === 'dine_in')
                                     <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                                    <span class="text-[11px] md:text-xs font-bold leading-none mt-px">Dine In (Meja {{ $order->table_number }})</span>
+                                    <span class="text-[11px] md:text-xs font-bold leading-none mt-px">Dine In</span>
                                 @else
                                     <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                                     <span class="text-[11px] md:text-xs font-bold leading-none mt-px">Takeaway</span>
@@ -170,51 +170,18 @@
                 @if($order->payment && $order->payment->status === 'pending')
                     @if($order->payment->method === 'cash')
                         {{-- Cash: Bayar di kasir --}}
-                        <div class="bg-amber-50 rounded-2xl md:rounded-3xl border border-amber-100 p-5 md:p-6">
+                        <div class="bg-brand-secondary rounded-2xl md:rounded-3xl border border-brand-primary/10 p-5 md:p-6">
                             <div class="flex items-center gap-3 mb-3">
-                                <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center shrink-0">
-                                    <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                <div class="w-10 h-10 bg-brand-secondary text-brand-primary rounded-xl flex items-center justify-center shrink-0">
+                                    <svg class="w-5 h-5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-sm font-extrabold text-amber-900">Pembayaran Tunai / Debit</h3>
-                                    <p class="text-[10px] text-amber-700 mt-0.5">Bayar langsung di kasir</p>
+                                    <h3 class="text-sm font-extrabold text-brand-dark">Pembayaran Tunai / Debit</h3>
+                                    <p class="text-[10px] text-brand-primary mt-0.5">Bayar langsung di kasir</p>
                                 </div>
                             </div>
-                            <div class="bg-white/70 rounded-xl p-3 border border-amber-100/80 text-center">
-                                <p class="text-xs md:text-sm text-amber-700 font-medium">Sebutkan <strong>Nomor Antrean #{{ $order->queue_number }}</strong> kepada kasir kami untuk menyelesaikan pembayaran.</p>
-                            </div>
-                        </div>
-
-                    @elseif($order->payment->method === 'transfer')
-                        {{-- Transfer Bank: Tampilkan info rekening --}}
-                        <div class="bg-blue-50/50 rounded-2xl md:rounded-3xl border border-blue-100 p-5 md:p-6">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
-                                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-sm font-extrabold text-blue-900">Transfer Bank</h3>
-                                    <p class="text-[10px] text-blue-600 mt-0.5">Transfer ke rekening berikut, admin akan konfirmasi otomatis</p>
-                                </div>
-                            </div>
-                            <div class="bg-white rounded-xl p-4 border border-blue-100 mb-3 shadow-sm">
-                                <p class="text-xs text-slate-600 mb-3">Nominal tepat: <strong class="text-slate-900 bg-amber-100 px-1 py-0.5 rounded">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</strong></p>
-                                @php $banks = \App\Models\BankAccount::active()->get(); @endphp
-                                <div class="space-y-2">
-                                    @foreach($banks as $bank)
-                                    <div class="flex items-center p-3 bg-slate-50 border border-slate-100 rounded-lg">
-                                        <div class="flex-1">
-                                            <p class="font-bold text-slate-800 text-xs uppercase">{{ $bank->bank_name }}</p>
-                                            <p class="font-mono text-sm font-black text-blue-600 tracking-wider my-0.5">{{ $bank->account_number }}</p>
-                                            <p class="text-[10px] text-slate-500">a.n {{ $bank->account_name }}</p>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-2 bg-blue-100/50 rounded-xl p-3 border border-blue-100">
-                                <svg class="w-4 h-4 text-blue-500 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
-                                <p class="text-[11px] text-blue-700 font-medium">Tidak perlu kirim bukti. Admin akan mengkonfirmasi pembayaran setelah transfer masuk.</p>
+                            <div class="bg-white/70 rounded-xl p-3 border border-brand-primary/10 text-center">
+                                <p class="text-xs md:text-sm text-brand-dark font-medium">Sebutkan <strong>Nomor Antrean #{{ $order->queue_number }}</strong> kepada kasir kami untuk menyelesaikan pembayaran.</p>
                             </div>
                         </div>
 
@@ -238,10 +205,10 @@
                             @php $qris = \App\Models\QrisSetting::getActive(); @endphp
                             @if($qris && $qris->image)
                             <div class="bg-white rounded-xl p-5 border border-purple-100 mb-3 shadow-sm text-center">
-                                <p class="text-slate-600 text-xs mb-3">Scan untuk bayar <strong class="text-slate-900 bg-amber-100 px-1 py-0.5 rounded">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</strong></p>
-                                <img @click="showQrisModal = true" src="{{ asset('storage/' . $qris->image) }}" alt="QRIS" loading="lazy" class="w-48 h-48 object-contain mx-auto rounded-lg border border-slate-100 p-1.5 shadow-sm cursor-pointer hover:border-amber-300 transition-colors bg-white">
+                                <p class="text-slate-600 text-xs mb-3">Scan untuk bayar <strong class="text-slate-900 bg-brand-secondary px-1 py-0.5 rounded">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</strong></p>
+                                <img @click="showQrisModal = true" src="{{ asset('storage/' . $qris->image) }}" alt="QRIS" loading="lazy" class="w-48 h-48 object-contain mx-auto rounded-lg border border-slate-100 p-1.5 shadow-sm cursor-pointer hover:border-brand-primary/30 transition-colors bg-white">
                                 <div class="mt-3 flex items-center justify-center gap-2">
-                                    <button @click="showQrisModal = true" type="button" class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 bg-amber-50 hover:bg-amber-100 border border-amber-200 px-3 py-1.5 rounded-lg transition-colors">
+                                    <button @click="showQrisModal = true" type="button" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-primary bg-brand-secondary hover:bg-brand-secondary/80 border border-brand-primary/10 px-3 py-1.5 rounded-lg transition-colors">
                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>Perbesar
                                     </button>
                                     <a href="{{ asset('storage/' . $qris->image) }}" download="QRIS_{{ Str::slug($qris->merchant_name) }}.png" class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-3 py-1.5 rounded-lg transition-colors">
@@ -295,7 +262,7 @@
                         {{-- Step 1: Pesanan Diterima (pending) --}}
                         @php $done1 = $currentIndex >= 0; @endphp
                         <div id="step-row-pending" class="relative flex items-start gap-4 lg:gap-6">
-                            <div id="step-circle-pending" class="flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full border-4 border-white {{ $done1 ? 'bg-amber-500 shadow-sm' : 'bg-slate-200' }} text-white flex items-center justify-center transition-colors duration-500">
+                            <div id="step-circle-pending" class="flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full border-4 border-white {{ $done1 ? 'bg-brand-primary shadow-sm' : 'bg-slate-200' }} text-white flex items-center justify-center transition-colors duration-500">
                                 @if($done1)
                                     <svg class="w-3.5 h-3.5 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                                 @else
@@ -311,7 +278,7 @@
                         {{-- Step 2: Dikonfirmasi (confirmed) --}}
                         @php $done2 = $currentIndex >= 1; $active2 = $order->status === 'confirmed'; @endphp
                         <div id="step-row-confirmed" class="relative flex items-start gap-4 lg:gap-6 {{ $active2 ? 'animate-pulse' : '' }}">
-                            <div id="step-circle-confirmed" class="flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full border-4 border-white {{ $done2 ? 'bg-amber-500 shadow-sm' : 'bg-slate-200' }} text-white flex items-center justify-center transition-colors duration-500">
+                            <div id="step-circle-confirmed" class="flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full border-4 border-white {{ $done2 ? 'bg-brand-primary shadow-sm' : 'bg-slate-200' }} text-white flex items-center justify-center transition-colors duration-500">
                                 @if($done2)
                                     <svg class="w-3.5 h-3.5 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                 @else
@@ -324,7 +291,7 @@
                                     @if($done2 && $order->confirmed_at)
                                         <p class="text-[10px] lg:text-[11px] text-slate-400 font-medium mt-0.5">{{ $order->confirmed_at->format('H:i') }} WIB</p>
                                     @elseif($active2)
-                                        <p class="text-[10px] lg:text-[11px] text-amber-600 bg-amber-50 px-2 py-0.5 rounded font-bold mt-1 max-w-max">Menunggu diproses dapur</p>
+                                        <p class="text-[10px] lg:text-[11px] text-brand-primary bg-brand-secondary px-2 py-0.5 rounded font-bold mt-1 max-w-max">Menunggu diproses dapur</p>
                                     @endif
                                 </div>
                             </div>
@@ -333,7 +300,7 @@
                         {{-- Step 3: Sedang Disiapkan (in_progress) --}}
                         @php $done3 = $currentIndex >= 2; $active3 = $order->status === 'in_progress'; @endphp
                         <div id="step-row-in_progress" class="relative flex items-start gap-4 lg:gap-6 {{ $active3 ? 'animate-pulse' : '' }}">
-                            <div id="step-circle-in_progress" class="flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full border-4 border-white {{ $done3 ? 'bg-amber-500 shadow-sm' : 'bg-slate-200' }} text-white flex items-center justify-center transition-colors duration-500">
+                            <div id="step-circle-in_progress" class="flex-shrink-0 w-8 h-8 lg:w-10 lg:h-10 rounded-full border-4 border-white {{ $done3 ? 'bg-brand-primary shadow-sm' : 'bg-slate-200' }} text-white flex items-center justify-center transition-colors duration-500">
                                 @if($done3)
                                     <svg class="w-3.5 h-3.5 lg:w-4 lg:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
                                 @else
@@ -344,7 +311,7 @@
                                 <h4 id="step-title-in_progress" class="text-sm lg:text-base font-bold leading-tight {{ $done3 ? 'text-slate-800' : 'text-slate-400' }}">Sedang Disiapkan</h4>
                                 <div id="step-subtitle-in_progress">
                                     @if($active3)
-                                        <p class="text-[10px] lg:text-[11px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded font-bold mt-1 max-w-max">☕ Barista meracik pesananmu...</p>
+                                        <p class="text-[10px] lg:text-[11px] text-brand-primary bg-brand-secondary px-2 py-0.5 rounded font-bold mt-1 max-w-max">☕ Barista meracik pesananmu...</p>
                                     @endif
                                 </div>
                             </div>
@@ -423,7 +390,7 @@
                             <p class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Rincian Item</p>
                             <div id="receipt-button-container" class="{{ $order->payment->status !== 'verified' ? 'hidden' : '' }}">
                                 <button @click="$dispatch('open-receipt')" class="text-[10px] md:text-xs font-bold text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 px-3 py-1.5 rounded-lg inline-flex items-center gap-1.5 transition-all shadow-sm active:scale-95">
-                                    <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                    <svg class="w-4 h-4 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                                     Lihat & Download Struk
                                 </button>
                             </div>
@@ -440,7 +407,7 @@
                                     <p>{{ $item->quantity }}x @ Rp {{ number_format($item->product_price, 0, ',', '.') }}</p>
                                 </div>
                                 @if($item->notes)
-                                    <p class="text-[10px] bg-amber-50 text-amber-700 font-medium px-2 py-1 rounded w-max mt-1 border border-amber-100 italic line-clamp-1">"{{ $item->notes }}"</p>
+                                    <p class="text-[10px] bg-brand-secondary text-brand-primary font-medium px-2 py-1 rounded w-max mt-1 border border-brand-primary/10 italic line-clamp-1">"{{ $item->notes }}"</p>
                                 @endif
                             </div>
                             @endforeach
@@ -467,7 +434,7 @@
                         @if($order->status === 'completed' && !$order->reviews()->exists())
                             <div class="mt-4" x-data="{ showReviewModal: false }">
                                 <div class="mt-4" x-data="{ showReviewModal: false }">
-                                <button type="button" @click="showReviewModal = true" class="w-full bg-amber-500 hover:bg-amber-600 active:scale-[0.98] text-white font-bold py-3.5 px-4 rounded-xl text-xs md:text-sm transition-all flex items-center justify-center gap-2 shadow-md shadow-amber-500/20">
+                                <button type="button" @click="showReviewModal = true" class="w-full bg-brand-primary hover:bg-brand-dark active:scale-[0.98] text-white font-bold py-3.5 px-4 rounded-xl text-xs md:text-sm transition-all flex items-center justify-center gap-2 shadow-md shadow-brand-primary/20">
                                     <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                                     Beri Penilaian Pesanan
                                 </button>
@@ -480,7 +447,7 @@
                                             {{-- Header --}}
                                             <div class="flex items-center justify-between px-5 py-4 border-b border-slate-100 bg-slate-50 shrink-0">
                                                 <div class="flex items-center gap-2">
-                                                    <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                                    <svg class="w-5 h-5 text-brand-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                                                     <h3 class="font-bold text-slate-800 text-sm md:text-base">Penilaian Pesanan</h3>
                                                 </div>
                                                 <button type="button" aria-label="Tutup Modal Penilaian" @click="showReviewModal = false" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-200 hover:bg-slate-300 text-slate-500 transition-colors">
@@ -503,8 +470,8 @@
 
                                                                 {{-- Product Name --}}
                                                                 <div class="flex items-center gap-2 mb-3">
-                                                                    <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center shrink-0">
-                                                                        <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                                                    <div class="w-8 h-8 bg-brand-secondary rounded-lg flex items-center justify-center shrink-0">
+                                                                        <svg class="w-4 h-4 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                                                                     </div>
                                                                     <h4 class="font-bold text-slate-800 text-sm">{{ $item->product_name }}</h4>
                                                                 </div>
@@ -513,27 +480,27 @@
                                                                 <p class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-2">Rating</p>
                                                                 <div class="flex items-center gap-1.5 mb-1">
                                                                     <button type="button" aria-label="Rating 1 Bintang" @click="setRating(1)" @mouseenter="hovered=1" @mouseleave="hovered=0" class="focus:outline-none transition-transform hover:scale-110">
-                                                                        <svg class="w-8 h-8" :class="(hovered||selected)>=1?'text-amber-400':'text-slate-200'" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                                                        <svg class="w-8 h-8" :class="(hovered||selected)>=1?'text-brand-primary':'text-slate-200'" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                                                                     </button>
                                                                     <button type="button" aria-label="Rating 2 Bintang" @click="setRating(2)" @mouseenter="hovered=2" @mouseleave="hovered=0" class="focus:outline-none transition-transform hover:scale-110">
-                                                                        <svg class="w-8 h-8" :class="(hovered||selected)>=2?'text-amber-400':'text-slate-200'" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                                                        <svg class="w-8 h-8" :class="(hovered||selected)>=2?'text-brand-primary':'text-slate-200'" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                                                                     </button>
                                                                     <button type="button" aria-label="Rating 3 Bintang" @click="setRating(3)" @mouseenter="hovered=3" @mouseleave="hovered=0" class="focus:outline-none transition-transform hover:scale-110">
-                                                                        <svg class="w-8 h-8" :class="(hovered||selected)>=3?'text-amber-400':'text-slate-200'" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                                                        <svg class="w-8 h-8" :class="(hovered||selected)>=3?'text-brand-primary':'text-slate-200'" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                                                                     </button>
                                                                     <button type="button" aria-label="Rating 4 Bintang" @click="setRating(4)" @mouseenter="hovered=4" @mouseleave="hovered=0" class="focus:outline-none transition-transform hover:scale-110">
-                                                                        <svg class="w-8 h-8" :class="(hovered||selected)>=4?'text-amber-400':'text-slate-200'" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                                                        <svg class="w-8 h-8" :class="(hovered||selected)>=4?'text-brand-primary':'text-slate-200'" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                                                                     </button>
                                                                     <button type="button" aria-label="Rating 5 Bintang" @click="setRating(5)" @mouseenter="hovered=5" @mouseleave="hovered=0" class="focus:outline-none transition-transform hover:scale-110">
-                                                                        <svg class="w-8 h-8" :class="(hovered||selected)>=5?'text-amber-400':'text-slate-200'" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                                                        <svg class="w-8 h-8" :class="(hovered||selected)>=5?'text-brand-primary':'text-slate-200'" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                                                                     </button>
                                                                 </div>
-                                                                <p class="text-xs font-semibold text-amber-600" x-text="['','Sangat Buruk','Buruk','Cukup','Bagus','Sangat Bagus'][selected]"></p>
+                                                                <p class="text-xs font-semibold text-brand-primary" x-text="['','Sangat Buruk','Buruk','Cukup','Bagus','Sangat Bagus'][selected]"></p>
 
                                                                 {{-- Komentar --}}
                                                                 <div class="mt-3">
                                                                     <label for="review-comment-{{ $index }}" class="block text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-1.5">Komentar (Opsional)</label>
-                                                                    <textarea id="review-comment-{{ $index }}" name="reviews[{{ $index }}][comment]" rows="2" class="w-full text-xs md:text-sm bg-white border border-slate-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 transition-all placeholder:text-slate-300 resize-none" placeholder="Ceritakan pengalaman rasa..."></textarea>
+                                                                    <textarea id="review-comment-{{ $index }}" name="reviews[{{ $index }}][comment]" rows="2" class="w-full text-xs md:text-sm bg-white border border-slate-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition-all placeholder:text-slate-300 resize-none" placeholder="Ceritakan pengalaman rasa..."></textarea>
                                                                 </div>
                                                             </div>
                                                         @endforeach
@@ -544,7 +511,7 @@
                                                         <button type="button" @click="showReviewModal = false" class="flex-1 py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-bold transition-colors">
                                                             Batal
                                                         </button>
-                                                        <button type="submit" class="flex-1 py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold transition-colors shadow-md shadow-amber-500/25">
+                                                        <button type="submit" class="flex-1 py-3 px-4 rounded-xl bg-brand-primary hover:bg-brand-dark text-white text-sm font-bold transition-colors shadow-md shadow-brand-primary/25">
                                                             ✨ Kirim Penilaian
                                                         </button>
                                                     </div>

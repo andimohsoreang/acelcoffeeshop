@@ -12,7 +12,7 @@
         <span class="text-sm font-bold text-slate-800 truncate">{{ $product->name }}</span>
 
         {{-- Cart shortcut --}}
-        <a href="{{ route('cart.index') }}" aria-label="Keranjang Belanja" class="ml-auto relative w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 hover:bg-amber-50 text-slate-600 hover:text-amber-600 transition-colors flex-shrink-0">
+        <a href="{{ route('cart.index') }}" aria-label="Keranjang Belanja" class="ml-auto relative w-9 h-9 flex items-center justify-center rounded-full bg-brand-secondary/50 hover:bg-brand-secondary text-brand-muted hover:text-brand-primary transition-colors flex-shrink-0">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
             @php $hCartCount = count(session()->get('cart', [])); @endphp
             @if($hCartCount > 0)
@@ -48,14 +48,14 @@
                 <span class="px-2 py-0.5 text-[10px] font-bold uppercase bg-red-500 text-white rounded-lg shadow-md">🔥 New</span>
             @endif
             @if($product->is_featured)
-                <span class="px-2 py-0.5 text-[10px] font-bold uppercase bg-amber-500 text-white rounded-lg shadow-md">⭐ Unggulan</span>
+                <span class="px-2 py-0.5 text-[10px] font-bold uppercase bg-brand-primary text-brand-secondary rounded-lg shadow-md">⭐ Unggulan</span>
             @endif
         </div>
 
         {{-- Rating chip bottom-right --}}
         @if($product->rating_count > 0)
         <div class="absolute bottom-3 right-3 z-10 flex items-center gap-1 bg-black/60 backdrop-blur-sm text-white text-xs font-bold px-2.5 py-1 rounded-full" aria-label="Rating {{ number_format($product->rating_avg, 1) }} dari 5">
-            <svg class="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-3 h-3 text-brand-secondary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             {{ number_format($product->rating_avg, 1) }}
             <span class="text-white/60 font-normal">({{ $product->rating_count }})</span>
         </div>
@@ -69,10 +69,10 @@
         {{-- LEFT: Info --}}
         <div class="pt-4 md:pt-0 md:flex-1">
             {{-- Category label --}}
-            <p class="text-[10px] font-bold text-amber-600 uppercase tracking-widest mb-1">{{ $product->category->name ?? '—' }}</p>
+            <p class="text-[10px] font-bold text-brand-primary uppercase tracking-widest mb-1">{{ $product->category->name ?? '—' }}</p>
 
             {{-- Product Name --}}
-            <h1 class="text-xl md:text-2xl font-extrabold text-slate-900 leading-tight mb-2">{{ $product->name }}</h1>
+            <h1 class="text-xl md:text-2xl font-extrabold text-brand-dark leading-tight mb-2">{{ $product->name }}</h1>
 
             {{-- Star Rating --}}
             @if($product->rating_count > 0)
@@ -80,7 +80,7 @@
                 <div class="flex gap-0.5">
                     @for($i = 1; $i <= 5; $i++)
                         @if($i <= floor($product->rating_avg))
-                            <svg class="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-3.5 h-3.5 text-brand-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                         @else
                             <svg class="w-3.5 h-3.5 text-slate-200" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                         @endif
@@ -103,7 +103,7 @@
             <div class="flex items-center justify-between gap-3 mb-3">
                 <div>
                     <p class="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">Harga</p>
-                    <p class="text-base font-extrabold text-amber-600 leading-tight">{{ $product->formatted_price }}</p>
+                    <p class="text-base font-extrabold text-brand-primary leading-tight">{{ $product->formatted_price }}</p>
                 </div>
                 @if($product->stock > 0)
                     <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 border border-emerald-100 text-emerald-700 text-[10px] font-bold rounded-full">
@@ -122,9 +122,9 @@
         {{-- RIGHT (desktop): Price + Cart on sidebar --}}
         <div class="hidden md:block md:w-72 lg:w-80 flex-shrink-0">
             @if($product->is_available && $product->stock > 0)
-            <div class="sticky top-24 bg-gradient-to-b from-amber-50 to-orange-50 border border-amber-100 rounded-2xl p-5">
+            <div class="sticky top-24 bg-brand-secondary border border-brand-primary/10 rounded-2xl p-5">
                 <p class="text-xs text-slate-500 mb-1 font-medium">Harga</p>
-                <p class="text-3xl font-extrabold text-amber-600 mb-4">{{ $product->formatted_price }}</p>
+                <p class="text-3xl font-extrabold text-brand-primary mb-4">{{ $product->formatted_price }}</p>
 
                 <form action="{{ route('cart.add') }}" method="POST">
                     @csrf
@@ -133,20 +133,20 @@
                         <span class="text-sm text-slate-600 font-medium">Jumlah:</span>
                         <div class="flex items-center gap-1 bg-white rounded-xl border border-slate-200 shadow-sm ml-auto">
                             <button type="button" id="desktop-qty-minus" aria-label="Kurangi jumlah"
-                                    class="w-8 h-8 flex items-center justify-center text-slate-500 hover:text-amber-600 hover:bg-amber-50 rounded-l-xl transition-colors">
+                                    class="w-8 h-8 flex items-center justify-center text-brand-muted hover:text-brand-primary hover:bg-brand-secondary rounded-l-xl transition-colors">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
                             </button>
                             <input type="number" name="quantity" id="desktop-qty" value="1" min="1" max="{{ $product->stock }}"
                                    aria-label="Input jumlah pemesanan"
                                    class="w-10 h-8 text-center text-sm font-bold text-slate-800 bg-transparent border-none outline-none">
                             <button type="button" id="desktop-qty-plus" aria-label="Tambah jumlah"
-                                    class="w-8 h-8 flex items-center justify-center text-slate-500 hover:text-amber-600 hover:bg-amber-50 rounded-r-xl transition-colors">
+                                    class="w-8 h-8 flex items-center justify-center text-brand-muted hover:text-brand-primary hover:bg-brand-secondary rounded-r-xl transition-colors">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                             </button>
                         </div>
                     </div>
                     <button type="submit"
-                            class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold rounded-xl py-3 shadow-lg shadow-amber-200 hover:shadow-xl hover:from-amber-700 hover:to-amber-600 active:scale-[0.97] transition-all">
+                            class="w-full flex items-center justify-center gap-2 bg-brand-primary text-white font-bold rounded-xl py-3 shadow-lg shadow-brand-primary/20 hover:bg-brand-dark active:scale-[0.97] transition-all">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
                         Tambah ke Keranjang
                     </button>
@@ -169,14 +169,14 @@
 @if($product->reviews->count() > 0)
 <div class="w-full max-w-5xl lg:max-w-7xl md:mx-auto px-4 md:px-6 mt-6 mb-4">
     <h2 class="text-base font-extrabold text-slate-800 mb-3 flex items-center gap-2">
-        💬 Ulasan <span class="text-amber-600">({{ $product->reviews->count() }})</span>
+        💬 Ulasan <span class="text-brand-primary">({{ $product->reviews->count() }})</span>
     </h2>
     <div class="space-y-3 md:grid md:grid-cols-2 md:gap-4 md:space-y-0">
         @foreach($product->reviews as $review)
         <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm">
             <div class="flex items-start justify-between gap-2 mb-2">
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-primary to-brand-dark flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
                         {{ mb_substr($review->customer_name, 0, 1) }}
                     </div>
                     <div>
@@ -186,7 +186,7 @@
                 </div>
                 <div class="flex items-center gap-0.5 flex-shrink-0">
                     @for($i = 1; $i <= 5; $i++)
-                        <svg class="w-3 h-3 {{ $i <= $review->rating ? 'text-amber-400' : 'text-slate-200' }}" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <svg class="w-3 h-3 {{ $i <= $review->rating ? 'text-brand-primary' : 'text-slate-200' }}" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                     @endfor
                 </div>
             </div>
@@ -225,13 +225,13 @@
                 <a href="{{ route('menu.show', $rp->slug) }}">
                     <p class="text-[10px] font-bold text-slate-800 line-clamp-2 leading-tight mb-0.5">{{ $rp->name }}</p>
                 </a>
-                <p class="text-[10px] font-extrabold text-amber-600 mb-1.5">{{ $rp->formatted_price }}</p>
+                <p class="text-[10px] font-extrabold text-brand-primary mb-1.5">{{ $rp->formatted_price }}</p>
                 @if($rp->is_available && $rp->stock > 0)
                 <form action="{{ route('cart.add') }}" method="POST" class="mt-auto">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $rp->id }}">
                     <input type="hidden" name="quantity" value="1">
-                    <button type="submit" aria-label="Tambah {{ $rp->name }} ke keranjang" class="w-full flex items-center justify-center gap-1 bg-amber-600 hover:bg-amber-700 text-white rounded-lg py-1 text-[9px] font-bold active:scale-95 transition-all">
+                    <button type="submit" aria-label="Tambah {{ $rp->name }} ke keranjang" class="w-full flex items-center justify-center gap-1 bg-brand-primary hover:bg-brand-dark text-white rounded-lg py-1 text-[9px] font-bold active:scale-95 transition-all">
                         <svg class="w-2.5 h-2.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
                         Keranjang
                     </button>
@@ -264,9 +264,8 @@
             {{-- Price --}}
             <div class="flex-1 min-w-0">
                 <p class="text-[9px] font-semibold text-slate-400 uppercase tracking-wider leading-none">Harga</p>
-                <p id="mobile-price-display"
-                   data-base-price="{{ $product->price }}"
-                   class="text-sm font-extrabold text-amber-600 leading-tight">{{ $product->formatted_price }}</p>
+                <p id="mobile-price-display" data-base-price="{{ $product->price }}"
+                   class="text-sm font-extrabold text-brand-primary leading-tight">{{ $product->formatted_price }}</p>
             </div>
 
             {{-- Stepper --}}
@@ -284,8 +283,7 @@
 
             {{-- Add Button --}}
             <button type="submit"
-                    aria-label="Tambah {{ $product->name }} ke keranjang"
-                    class="flex items-center gap-1.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl px-4 h-8 shadow-md active:scale-[0.97] transition-all whitespace-nowrap flex-shrink-0">
+                    class="flex items-center gap-1.5 bg-brand-primary hover:bg-brand-dark text-white font-bold text-xs rounded-xl px-4 h-8 shadow-md active:scale-[0.97] transition-all whitespace-nowrap flex-shrink-0">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                 Tambah
             </button>

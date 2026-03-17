@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-slate-100 antialiased selection:bg-amber-500/30">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-brand-secondary antialiased selection:bg-brand-primary/30">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -64,11 +64,11 @@
         .toast-animate { animation: slideDownFade 3s ease-in-out forwards; }
 
         /* Desktop sidebar subtle pattern */
-        .desktop-bg { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 40%, #fef9ee 100%); }
+        .desktop-bg { background: linear-gradient(135deg, #F8F1E7 0%, #ecd9c6 40%, #ffffff 100%); }
     </style>
     @stack('styles')
 </head>
-<body class="h-full text-slate-800 bg-gradient-to-br from-amber-50 via-white to-slate-50">
+<body class="h-full text-brand-dark bg-brand-secondary">
 
     {{-- TOP NAVBAR: visible only on tablet and desktop --}}
     @if(!isset($hideNav) || !$hideNav)
@@ -80,7 +80,7 @@
         - Mobile: full width, no padding (feels like native app)
         - Tablet/Desktop: centered container with max-width, elegant drop shadow
     --}}
-    <div class="w-full md:max-w-5xl lg:max-w-7xl mx-auto min-h-screen bg-white md:rounded-3xl md:my-6 md:shadow-xl flex flex-col overflow-x-hidden">
+    <div class="w-full md:max-w-5xl lg:max-w-7xl mx-auto min-h-screen bg-brand-cream md:rounded-3xl md:my-6 md:shadow-xl flex flex-col overflow-x-hidden">
 
         {{-- Main View Content --}}
         <main class="flex-1 no-scrollbar pb-20 md:pb-10 relative">

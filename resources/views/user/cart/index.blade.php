@@ -35,8 +35,8 @@
 <div class="flex flex-col items-center justify-center px-6 py-20 text-center">
     {{-- Illustration --}}
     <div class="relative mb-8">
-        <div class="w-32 h-32 bg-gradient-to-br from-amber-50 to-orange-100 rounded-3xl flex items-center justify-center shadow-sm">
-            <svg class="w-16 h-16 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="w-32 h-32 bg-brand-secondary rounded-3xl flex items-center justify-center shadow-sm">
+            <svg class="w-16 h-16 text-brand-muted/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
             </svg>
         </div>
@@ -49,7 +49,7 @@
         Tambahkan minuman favoritmu dari menu kami dan nikmati setiap tegukan yang menyegarkan.
     </p>
     <a href="{{ route('menu.index') }}"
-       class="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm rounded-2xl px-6 py-3 shadow-lg shadow-amber-200 active:scale-95 transition-all">
+       class="inline-flex items-center gap-2 bg-brand-primary hover:bg-brand-dark text-white font-bold text-sm rounded-2xl px-6 py-3 shadow-lg shadow-brand-primary/20 active:scale-95 transition-all">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
         </svg>
@@ -70,7 +70,7 @@
         {{-- Section Header --}}
         <div class="flex items-center justify-between px-1 mb-6">
             <div class="flex items-center gap-2">
-                <div class="w-1.5 h-6 bg-amber-500 rounded-full"></div>
+                <div class="w-1.5 h-6 bg-brand-primary rounded-full"></div>
                 <h2 class="text-base font-extrabold text-slate-800">Pesanan Kamu</h2>
             </div>
             <form action="{{ route('cart.clear') }}" method="POST" id="clear-cart-form">
@@ -110,11 +110,11 @@
                     <div>
                         <div class="flex items-start justify-between gap-2">
                             <div class="min-w-0">
-                                <h3 class="text-base font-bold text-slate-800 leading-snug group-hover:text-amber-600 transition-colors truncate">
+                                <h3 class="text-base font-bold text-brand-dark leading-snug group-hover:text-brand-primary transition-colors truncate">
                                     {{ $item['name'] }}
                                 </h3>
                                 <div class="flex items-center gap-2 mt-1">
-                                    <span class="text-sm font-extrabold text-amber-600">
+                                    <span class="text-sm font-extrabold text-brand-primary">
                                         Rp {{ number_format($item['price'], 0, ',', '.') }}
                                     </span>
                                     <span class="text-[10px] text-slate-400 font-medium">/ pcs</span>
@@ -158,7 +158,7 @@
                             <input type="hidden" name="quantity" id="qty-{{ $id }}" value="{{ $item['quantity'] }}">
                             <button type="button" aria-label="Tambah jumlah {{ $item['name'] }}"
                                     onclick="changeQty({{ $id }}, 1)"
-                                    class="w-7 h-7 flex items-center justify-center bg-white rounded-lg shadow-sm text-slate-600 hover:text-amber-600 transition-colors active:scale-90">
+                                    class="w-7 h-7 flex items-center justify-center bg-white rounded-lg shadow-sm text-slate-600 hover:text-brand-primary transition-colors active:scale-90">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
                                 </svg>
@@ -194,7 +194,7 @@
     <div class="hidden md:block md:w-[340px] flex-shrink-0 sticky top-24">
         <div class="bg-white border border-slate-100 rounded-[2.5rem] shadow-sm overflow-hidden p-6">
             <h3 class="text-lg font-extrabold text-slate-800 mb-6 flex items-center gap-2">
-                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                 </svg>
                 Ringkasan Pesanan
@@ -224,7 +224,7 @@
                 {{-- Add potential shipping/discount lines here if ever needed --}}
                 <div class="flex items-center justify-between pt-2">
                     <span class="text-base font-extrabold text-slate-800">Total Akhir</span>
-                    <span class="text-xl font-black text-amber-600 tracking-tight" id="desktop-total">
+                    <span class="text-xl font-black text-brand-primary tracking-tight" id="desktop-total">
                         Rp {{ number_format($subtotal, 0, ',', '.') }}
                     </span>
                 </div>
@@ -232,7 +232,7 @@
 
             <div class="mt-8 space-y-3">
                 <a href="{{ route('checkout.index') }}" aria-label="Lanjutkan Proses Checkout"
-                   class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-extrabold text-sm rounded-2xl py-4 shadow-xl shadow-amber-200 active:scale-[0.97] transition-all group">
+                   class="w-full flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-dark text-white font-extrabold text-sm rounded-2xl py-4 shadow-xl shadow-brand-primary/20 active:scale-[0.97] transition-all group">
                     <span>Lanjutkan Checkout</span>
                     <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
@@ -259,12 +259,12 @@
     <div class="flex items-center justify-between gap-4">
         <div class="flex flex-col">
             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Total Pesanan</span>
-            <span class="text-lg font-black text-amber-600 leading-none tracking-tight" id="mobile-total">
+            <span class="text-lg font-black text-brand-primary leading-none tracking-tight" id="mobile-total">
                 Rp {{ number_format($subtotal, 0, ',', '.') }}
             </span>
         </div>
         <a href="{{ route('checkout.index') }}" aria-label="Buka Halaman Checkout"
-           class="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white font-extrabold text-sm rounded-2xl py-3.5 shadow-xl shadow-amber-100 active:scale-[0.97] transition-all">
+           class="flex-1 flex items-center justify-center gap-2 bg-brand-primary hover:bg-brand-dark text-white font-extrabold text-sm rounded-2xl py-3.5 shadow-xl shadow-brand-primary/20 active:scale-[0.97] transition-all">
             <span>Checkout Sekarang</span>
             <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/>

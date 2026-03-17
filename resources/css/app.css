@@ -11,7 +11,7 @@
     }
 
     body {
-        @apply font-sans text-gray-800 bg-gray-50 antialiased;
+        @apply font-sans text-brand-dark bg-brand-secondary antialiased;
     }
 }
 
@@ -22,59 +22,59 @@
 
     /* Tombol utama */
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-xl transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+        @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-brand-primary hover:bg-brand-dark text-white font-semibold rounded-xl transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
     }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white hover:bg-gray-100 text-gray-700 font-semibold rounded-xl border border-gray-200 transition-colors duration-200;
+        @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white hover:bg-brand-secondary text-brand-primary font-semibold rounded-xl border border-gray-200 transition-colors duration-200;
     }
 
     .btn-danger {
-        @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-xl transition-colors duration-200;
+        @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-brand-accent hover:opacity-90 text-white font-semibold rounded-xl transition-colors duration-200;
     }
 
     /* Card produk */
     .product-card {
-        @apply bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-200;
+        @apply bg-white rounded-2xl shadow-sm border border-brand-secondary overflow-hidden hover:shadow-md transition-shadow duration-200;
     }
 
     /* Input form */
     .form-input {
-        @apply w-full rounded-xl border-gray-200 focus:border-amber-400 focus:ring-amber-400 text-sm;
+        @apply w-full rounded-xl border-gray-200 focus:border-brand-primary focus:ring-brand-primary text-sm;
     }
 
     .form-label {
-        @apply block text-sm font-medium text-gray-700 mb-1;
+        @apply block text-sm font-medium text-brand-muted mb-1;
     }
 
     /* Status order tracker */
     .step-completed {
-        @apply bg-green-500 text-white border-green-500;
+        @apply bg-emerald-500 text-white border-emerald-500;
     }
 
     .step-active {
-        @apply bg-amber-500 text-white border-amber-500 ring-4 ring-amber-100;
+        @apply bg-brand-primary text-white border-brand-primary ring-4 ring-brand-primary/10;
     }
 
     .step-pending {
-        @apply bg-white text-gray-400 border-gray-200;
+        @apply bg-white text-brand-muted border-brand-secondary;
     }
 
     /* Badge status (user side) */
     .badge-pending {
-        @apply bg-yellow-100 text-yellow-800;
+        @apply bg-brand-secondary text-brand-primary border border-brand-primary/10;
     }
 
     .badge-confirmed {
-        @apply bg-blue-100 text-blue-800;
+        @apply bg-blue-50 text-blue-700 border border-blue-100;
     }
 
     .badge-in_progress {
-        @apply bg-orange-100 text-orange-800;
+        @apply bg-brand-secondary text-brand-primary border border-brand-primary/10;
     }
 
     .badge-ready {
-        @apply bg-green-100 text-green-800;
+        @apply bg-emerald-100 text-emerald-800;
     }
 
     .badge-completed {
@@ -82,6 +82,6 @@
     }
 
     .badge-cancelled {
-        @apply bg-red-100 text-red-800;
+        @apply bg-brand-accent/10 text-brand-accent;
     }
 }

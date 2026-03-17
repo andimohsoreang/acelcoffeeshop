@@ -24,10 +24,10 @@
                         <svg class="w-4 h-4 md:w-5 md:h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
                     </div>
                     <input type="tel" name="phone" value="{{ request('phone') }}" required aria-label="Masukkan Nomor WhatsApp Anda"
-                           class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs md:text-sm rounded-xl md:rounded-2xl focus:ring-amber-500 focus:border-amber-500 block p-3.5 pl-10 md:p-4 md:pl-12 transition-colors"
+                           class="w-full bg-slate-50 border border-slate-200 text-slate-800 text-xs md:text-sm rounded-xl md:rounded-2xl focus:ring-brand-primary focus:border-brand-primary block p-3.5 pl-10 md:p-4 md:pl-12 transition-colors"
                            placeholder="Contoh: 081234567890">
                 </div>
-                <button type="submit" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3.5 px-5 md:py-4 md:px-6 rounded-xl md:rounded-2xl text-xs md:text-sm transition-colors flex items-center justify-center gap-2 flex-shrink-0">
+                <button type="submit" class="bg-brand-primary hover:bg-brand-dark text-white font-bold py-3.5 px-5 md:py-4 md:px-6 rounded-xl md:rounded-2xl text-xs md:text-sm transition-colors flex items-center justify-center gap-2 flex-shrink-0">
                     <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                     Cari Pesanan
                 </button>
@@ -52,7 +52,7 @@
                     <h3 class="text-xs md:text-sm font-bold text-slate-500 uppercase tracking-widest pl-1 mb-1.5 md:mb-2">Riwayat untuk {{ $phone }}</h3>
                     
                     @foreach($orders as $order)
-                        <a href="{{ route('order.show', $order->order_code) }}" aria-label="Lihat detail pesanan {{ $order->order_code }}" class="block bg-white rounded-xl md:rounded-2xl p-3.5 md:p-5 border border-slate-100 shadow-sm hover:shadow-md hover:border-amber-200 transition-all group">
+                        <a href="{{ route('order.show', $order->order_code) }}" aria-label="Lihat detail pesanan {{ $order->order_code }}" class="block bg-white rounded-xl md:rounded-2xl p-3.5 md:p-5 border border-slate-100 shadow-sm hover:shadow-md hover:border-brand-primary/20 transition-all group">
                             <div class="flex items-start justify-between mb-2.5 md:mb-3 border-b border-dashed border-slate-100 pb-2.5 md:pb-3">
                                 <div>
                                     <p class="text-[9px] md:text-[10px] text-slate-400 font-semibold mb-0.5">{{ $order->created_at->format('d M Y, H:i') }}</p>
@@ -61,7 +61,7 @@
                                 <div class="text-right">
                                     {{-- Status Badge --}}
                                     @if($order->status === 'pending')
-                                        <span class="inline-flex bg-amber-100 text-amber-700 text-[9px] md:text-[10px] font-bold px-1.5 md:px-2 py-0.5 md:py-1 rounded border border-amber-200">Menunggu</span>
+                                        <span class="inline-flex bg-brand-secondary text-brand-primary text-[9px] md:text-[10px] font-bold px-1.5 md:px-2 py-0.5 md:py-1 rounded border border-brand-primary/10">Menunggu</span>
                                     @elseif($order->status === 'processing')
                                         <span class="inline-flex bg-blue-100 text-blue-700 text-[9px] md:text-[10px] font-bold px-1.5 md:px-2 py-0.5 md:py-1 rounded border border-blue-200">Diproses</span>
                                     @elseif($order->status === 'completed')
@@ -75,10 +75,10 @@
                             <div class="flex justify-between items-center">
                                 <div>
                                     <p class="text-[10px] md:text-xs text-slate-500 mb-0.5">Total ({{ $order->items->sum('quantity') }} item)</p>
-                                    <p class="text-sm md:text-base font-black text-amber-600">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</p>
+                                    <p class="text-sm md:text-base font-black text-brand-primary">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</p>
                                 </div>
                                 
-                                <div class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-amber-50 group-hover:text-amber-500 transition-colors">
+                                <div class="w-7 h-7 md:w-8 md:h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-brand-secondary group-hover:text-brand-primary transition-colors">
                                     <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                                 </div>
                             </div>
