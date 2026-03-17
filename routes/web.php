@@ -86,8 +86,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
     Route::put('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
 
-    // Bank Accounts
-    Route::resource('bank-accounts', \App\Http\Controllers\Admin\BankAccountController::class)->except(['create', 'show', 'edit']);
+
 
             // Customers
             Route::get('/customers', [Admin\CustomerController::class, 'index'])->name('customers.index');

@@ -154,7 +154,6 @@ class DashboardController extends Controller
                 'count' => $p->count,
                 'label' => match ($p->method) {
                     'cash' => 'Tunai',
-                    'transfer' => 'Transfer Bank',
                     'qris' => 'QRIS',
                     default => ucfirst($p->method),
                 },

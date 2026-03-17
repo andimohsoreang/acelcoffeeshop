@@ -138,13 +138,11 @@
                     // Helper to get method label
                     $methodNames = [
                         'cash' => 'Tunai (Cash)',
-                        'qris' => 'QRIS',
-                        'transfer' => 'Transfer Bank'
+                        'qris' => 'QRIS'
                     ];
                     $methodColors = [
                         'cash' => 'bg-emerald-500',
-                        'qris' => 'bg-indigo-500',
-                        'transfer' => 'bg-amber-500'
+                        'qris' => 'bg-indigo-500'
                     ];
                     $count = $pay->count;
                     $percent = $summary['revenue'] > 0 ? round(($pay->revenue / $summary['revenue']) * 100) : 0;

@@ -11,7 +11,7 @@ class Order extends Model
 {
     protected $fillable = [
         'order_code', 'queue_number', 'order_type',
-        'table_number', 'customer_name', 'customer_phone',
+        'customer_name', 'customer_phone',
         'subtotal', 'total_amount', 'notes', 'status',
         'confirmed_at', 'completed_at', 'cancelled_at', 'cancel_reason',
     ];

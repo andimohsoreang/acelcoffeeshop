@@ -149,11 +149,6 @@
                                     <span class="badge-type-{{ strtolower($order->order_type) }}" style="display:inline-flex;align-items:center;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;">
                                         {{ str_replace('_', ' ', $order->order_type) }}
                                     </span>
-                                    @if($order->order_type === 'dine_in' && $order->table_number)
-                                        <span style="display:inline-flex;align-items:center;padding:2px 6px;border-radius:6px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;border: 1px solid #cbd5e1;background:#fff;color:#475569;">
-                                            Meja {{ $order->table_number }}
-                                        </span>
-                                    @endif
                                 </div>
                                 <div style="display:flex;align-items:center;gap:4px;font-size:11px;font-weight:500;color:#64748b;">
                                     @if($order->payment_method === 'cash')

@@ -75,12 +75,6 @@
                         <span class="info-label">Tipe Pesanan</span>
                         <p class="info-value capitalize">{{ str_replace('_', ' ', $order->order_type) }}</p>
                     </div>
-                    @if($order->order_type === 'dine_in')
-                    <div>
-                        <span class="info-label">Nomor Meja</span>
-                        <p class="info-value text-amber-600 font-bold bg-amber-50 px-2 py-0.5 rounded inline-block border border-amber-100">{{ $order->table_number ?? '-' }}</p>
-                    </div>
-                    @endif
                     @if($order->order_type === 'delivery')
                     <div class="md:col-span-2">
                         <span class="info-label">Alamat Pengiriman Lengkap</span>
@@ -185,7 +179,7 @@
                 @if($order->payment)
                     {{-- Info Metode Pembayaran --}}
                     <div class="flex items-center gap-3 p-3 rounded-xl mb-4
-                        {{ $order->payment->method === 'cash' ? 'bg-green-50 border border-green-100' : ($order->payment->method === 'transfer' ? 'bg-blue-50 border border-blue-100' : 'bg-purple-50 border border-purple-100') }}">
+                        {{ $order->payment->method === 'cash' ? 'bg-green-50 border border-green-100' : 'bg-purple-50 border border-purple-100' }}">
                         @if($order->payment->method === 'cash')
                             <div class="w-9 h-9 rounded-lg bg-green-100 flex items-center justify-center shrink-0">
                                 <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
@@ -194,16 +188,7 @@
                                 <p class="text-xs font-bold text-green-800">Pembayaran Tunai / Debit</p>
                                 <p class="text-[10px] text-green-600 mt-0.5">Customer membayar langsung di kasir. Konfirmasi setelah menerima uang/kartu.</p>
                             </div>
-                        @elseif($order->payment->method === 'transfer')
-                            <div class="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
-                                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-                            </div>
-                            <div>
-                                <p class="text-xs font-bold text-blue-800">Transfer Bank</p>
-                                <p class="text-[10px] text-blue-600 mt-0.5">Cek mutasi rekening bank untuk memastikan transfer diterima, lalu konfirmasi.</p>
-                            </div>
-                        @else
-                            <div class="w-9 h-9 rounded-lg bg-purple-100 flex items-center justify-center shrink-0">
+                            @else                            <div class="w-9 h-9 rounded-lg bg-purple-100 flex items-center justify-center shrink-0">
                                 <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
                             </div>
                             <div>
@@ -246,13 +231,7 @@
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                                     ✅ Konfirmasi Pembayaran Tunai
                                 </button>
-                            @elseif($order->payment->method === 'transfer')
-                                <button type="submit" class="w-full btn-update bg-blue-600 hover:bg-blue-700 flex items-center justify-center gap-2">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
-                                    🏦 Konfirmasi Transfer Diterima
-                                </button>
-                            @else
-                                <button type="submit" class="w-full btn-update bg-purple-600 hover:bg-purple-700 flex items-center justify-center gap-2">
+                            @else                                <button type="submit" class="w-full btn-update bg-purple-600 hover:bg-purple-700 flex items-center justify-center gap-2">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
                                     📱 Verifikasi QRIS
                                 </button>

@@ -32,7 +32,6 @@ class Payment extends Model
     {
         return match ($this->method) {
                 'cash' => 'Tunai',
-                'transfer' => 'Transfer Bank',
                 'qris' => 'QRIS',
                 default => $this->method,
             };

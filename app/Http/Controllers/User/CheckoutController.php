@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\BankAccount;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
@@ -39,21 +38,19 @@ class CheckoutController extends Controller
         session()->put('cart', $cart);
 
         $subtotal = array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart));
-        $bankAccounts = BankAccount::active()->get();
         $activeQris = QrisSetting::getActive();
         $hasQris = $activeQris !== null;
 
-        return view('user.checkout.index', compact('cart', 'subtotal', 'bankAccounts', 'activeQris', 'hasQris'));
+        return view('user.checkout.index', compact('cart', 'subtotal', 'activeQris', 'hasQris'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'order_type' => 'required|in:dine_in,takeaway',
-            'table_number' => 'required_if:order_type,dine_in|nullable|string|max:10',
             'customer_name' => 'required|string|max:255',
             'customer_phone' => 'required|string|max:20',
-            'payment_method' => 'required|in:cash,transfer,qris',
+            'payment_method' => 'required|in:cash,qris',
             'notes' => 'nullable|string|max:500',
         ]);
 
@@ -92,7 +89,6 @@ class CheckoutController extends Controller
                 'order_code' => Order::generateOrderCode(),
                 'queue_number' => Order::generateQueueNumber(),
                 'order_type' => $request->order_type,
-                'table_number' => $request->order_type === 'dine_in' ? $request->table_number : null,
                 'customer_name' => $request->customer_name,
                 'customer_phone' => $request->customer_phone,
                 'subtotal' => $subtotal,
