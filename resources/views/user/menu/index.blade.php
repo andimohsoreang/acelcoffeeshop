@@ -84,7 +84,11 @@
                 <a href="{{ route('menu.show', $product->slug) }}" aria-label="Lihat detail menu {{ $product->name }}" class="block relative overflow-hidden bg-slate-100 flex-shrink-0" style="aspect-ratio:4/3;">
                     @if($product->image)
                         <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" width="400" height="300" @if($loop->iteration <= 4 && $products->currentPage() == 1) fetchpriority="high" @else loading="lazy" @endif
+                             onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="hidden w-full h-full flex items-center justify-center bg-slate-50 border border-slate-100 rounded-2xl">
+                            <span class="text-3xl opacity-40">☕</span>
+                        </div>
                     @else
                         <div class="w-full h-full flex items-center justify-center">
                             <svg class="w-12 h-12 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -137,7 +141,7 @@
 
                     {{-- Desktop/Tablet: full-width add-to-cart button --}}
                     @if($product->is_available && $product->stock > 0)
-                    <form action="{{ route('cart.add') }}" method="POST" class="hidden md:block mt-2">
+                    <form action="{{ route('cart.add') }}" method="POST" class="ajax-cart-form hidden md:block mt-2">
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="quantity" value="1">
@@ -225,7 +229,7 @@
         <div class="w-8 h-1 bg-slate-200 rounded-full mx-auto mb-3"></div>
 
         {{-- Single-row compact layout --}}
-        <form id="sheet-form" action="{{ route('cart.add') }}" method="POST">
+        <form id="sheet-form" class="ajax-cart-form" action="{{ route('cart.add') }}" method="POST">
             @csrf
             <input type="hidden" name="product_id" id="sheet-product-id" value="">
             <input type="hidden" name="quantity" id="sheet-quantity" value="1">
@@ -335,6 +339,57 @@
                 if (sheetBasePrice > 0) {
                     document.getElementById('sheet-price').textContent = formatRupiah(sheetBasePrice * sheetQty);
                 }
+            }
+        });
+
+        // AJAX Submit for All Cart Forms
+        document.addEventListener('submit', async (e) => {
+            const form = e.target.closest('.ajax-cart-form');
+            if (!form) return;
+
+            e.preventDefault();
+            const formData = new FormData(form);
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (!submitBtn) return;
+            const originalBtnHtml = submitBtn.innerHTML;
+
+            // Loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<svg class="w-4 h-4 animate-spin mx-auto" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    }
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    window.showToast(result.message || 'Berhasil ditambahkan!', 'success');
+                    
+                    // If it was the sheet form, close it
+                    if (form.id === 'sheet-form') {
+                        closeQuickAdd();
+                    }
+                    
+                    // Update cart count badges globally
+                    document.querySelectorAll('.cart-count-badge').forEach(el => {
+                        el.textContent = result.count;
+                        el.classList.remove('hidden');
+                    });
+                } else {
+                    window.showToast(result.message || 'Gagal menambahkan item.', 'error');
+                }
+            } catch (error) {
+                console.error('Add to Cart Error:', error);
+                window.showToast('Terjadi kesalahan koneksi.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
             }
         });
 

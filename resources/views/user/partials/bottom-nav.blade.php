@@ -36,7 +36,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
                 @if($cartCount > 0)
-                    <span class="absolute top-0 right-0 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white shadow-sm ring-2 ring-red-100 ring-offset-1">{{ $cartCount }}</span>
+                    <span class="cart-count-badge absolute top-0 right-0 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white shadow-sm ring-2 ring-red-100 ring-offset-1">{{ $cartCount }}</span>
+                @else
+                    <span class="cart-count-badge hidden absolute top-0 right-0 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white shadow-sm ring-2 ring-red-100 ring-offset-1">0</span>
                 @endif
             </a>
         </div>

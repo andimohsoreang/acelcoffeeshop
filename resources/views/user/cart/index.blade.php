@@ -95,7 +95,11 @@
                    class="w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0 relative group-hover:scale-[1.02] transition-transform duration-300">
                     @if(!empty($item['image']))
                         <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}" width="100" height="100" @if($loop->iteration <= 3) fetchpriority="high" @else loading="lazy" @endif
+                             onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
                              class="w-full h-full object-cover">
+                        <div class="hidden w-full h-full flex items-center justify-center bg-slate-50 border border-slate-100 rounded-2xl">
+                            <span class="text-2xl opacity-40">☕</span>
+                        </div>
                     @else
                         <div class="w-full h-full flex items-center justify-center bg-slate-100">
                             <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

@@ -118,40 +118,56 @@
         </div>
     </div>
 
-    {{-- Flash Toast --}}
-    @if(session('success') || session('error'))
-        <div class="fixed top-20 left-4 right-4 md:left-auto md:right-8 md:w-80 z-[100] pointer-events-none toast-animate">
-            <div class="bg-white/90 backdrop-blur-md border border-slate-100 px-4 py-3.5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center gap-3">
-                @if(session('success'))
-                    <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center flex-shrink-0">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
-                        </svg>
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-extrabold text-slate-800 leading-tight">
-                            {{ session('success') }}
-                        </p>
-                    </div>
-                @else
-                    <div class="w-8 h-8 rounded-full bg-red-50 text-red-500 flex items-center justify-center flex-shrink-0">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-extrabold text-slate-800 leading-tight">
-                            {{ session('error') }}
-                        </p>
-                    </div>
-                @endif
-            </div>
-        </div>
-    @endif
+    {{-- Floating Toast Container (JS Driven) --}}
+    <div id="toast-container" class="fixed top-20 left-4 right-4 md:left-auto md:right-8 md:w-80 z-[200] pointer-events-none flex flex-col gap-3"></div>
 
     @stack('scripts')
 
     <script>
+        // GLOBAL TOAST FUNCTION
+        window.showToast = function(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            toast.className = `bg-white/95 backdrop-blur-md border border-slate-100 px-4 py-3.5 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center gap-3 transform transition-all duration-500 translate-y-[-20px] opacity-0 pointer-events-auto`;
+            
+            const icon = type === 'success' 
+                ? `<div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>`
+                : `<div class="w-8 h-8 rounded-full bg-red-50 text-red-500 flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg></div>`;
+
+            toast.innerHTML = `
+                ${icon}
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-extrabold text-slate-800 leading-tight">${message}</p>
+                </div>
+                <button onclick="this.parentElement.remove()" class="text-slate-300 hover:text-slate-500 transition-colors">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            `;
+
+            container.appendChild(toast);
+
+            // Animate in
+            setTimeout(() => {
+                toast.classList.remove('translate-y-[-20px]', 'opacity-0');
+            }, 10);
+
+            // Auto remove
+            setTimeout(() => {
+                toast.classList.add('translate-y-[-20px]', 'opacity-0');
+                setTimeout(() => toast.remove(), 500);
+            }, 4000);
+        };
+
+        // Check for session flash on load
+        @if(session('success'))
+            setTimeout(() => window.showToast("{{ session('success') }}", 'success'), 100);
+        @endif
+        @if(session('error'))
+            setTimeout(() => window.showToast("{{ session('error') }}", 'error'), 100);
+        @endif
+
         // SERVICE WORKER
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js')

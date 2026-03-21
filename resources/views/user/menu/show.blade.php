@@ -16,7 +16,9 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
             @php $hCartCount = count(session()->get('cart', [])); @endphp
             @if($hCartCount > 0)
-                <span class="absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center border border-white">{{ $hCartCount }}</span>
+                <span class="cart-count-badge absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center border border-white">{{ $hCartCount }}</span>
+            @else
+                <span class="cart-count-badge hidden absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 text-white text-[9px] font-bold rounded-full flex items-center justify-center border border-white">0</span>
             @endif
         </a>
     </div>
@@ -126,7 +128,7 @@
                 <p class="text-xs text-slate-500 mb-1 font-medium">Harga</p>
                 <p class="text-3xl font-extrabold text-brand-primary mb-4">{{ $product->formatted_price }}</p>
 
-                <form action="{{ route('cart.add') }}" method="POST">
+                <form action="{{ route('cart.add') }}" method="POST" class="ajax-cart-form">
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <div class="flex items-center gap-2 mb-4">
@@ -254,7 +256,7 @@
 --}}
 @if($product->is_available && $product->stock > 0)
 <div class="md:hidden fixed left-0 right-0 z-[70] bg-white/95 backdrop-blur-xl border-t border-slate-200 shadow-[0_-2px_20px_rgba(0,0,0,0.10)]" style="bottom:76px;">
-    <form action="{{ route('cart.add') }}" method="POST" class="px-4 py-2.5">
+    <form action="{{ route('cart.add') }}" method="POST" class="ajax-cart-form px-4 py-2.5">
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <input type="hidden" name="quantity" id="mobile-qty-val" value="1">
@@ -324,6 +326,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('mobile-qty-minus')?.addEventListener('click', () => updateMobileQty(mobileQty - 1));
     document.getElementById('mobile-qty-plus')?.addEventListener('click',  () => updateMobileQty(mobileQty + 1));
+
+    // AJAX Submit for All Cart Forms
+    document.addEventListener('submit', async (e) => {
+        const form = e.target.closest('.ajax-cart-form');
+        if (!form) return;
+
+        e.preventDefault();
+        const formData = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (!submitBtn) return;
+        const originalBtnHtml = submitBtn.innerHTML;
+
+        // Loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `<svg class="w-4 h-4 animate-spin mx-auto" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                }
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                window.showToast(result.message || 'Berhasil ditambahkan!', 'success');
+                
+                // Update cart count badges globally
+                document.querySelectorAll('.cart-count-badge').forEach(el => {
+                    el.textContent = result.count;
+                    el.classList.remove('hidden');
+                });
+            } else {
+                window.showToast(result.message || 'Gagal menambahkan item.', 'error');
+            }
+        } catch (error) {
+            console.error('Add to Cart Error:', error);
+            window.showToast('Terjadi kesalahan koneksi.', 'error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+        }
+    });
 
     // Desktop stepper
     let desktopQty = 1;
